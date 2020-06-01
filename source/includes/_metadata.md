@@ -11,7 +11,7 @@
 | **`timestep_duration`** | The time between dataset timesteps, expressed as an ISO8601 duration. |
 | **`start_timestep`** | The earliest timestep in this dataset. Earlier timesteps represent historical data. |
 | **`end_timestep`** | The latest timestep in this dataset. Later timesteps represent forecast data. |
-| **`forecast_timestep`** | Data for timesteps later than this datetime are forecasts, and the data may change as new models are run.
+| **`forecast_timestep`** | Data for timesteps later than this datetime are forecasts, and the data may change as new models are run. |
 | **`links`** | Links to other endpoints relating to this dataset. |
 | **`dataset_bounds`** | The minimum and maximum latitude and longitude bounding box of this dataset. |
 | **`parameters`** | A list of parameters this dataset contains. Each parameter is an object with the following fields: |
