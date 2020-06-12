@@ -11,6 +11,7 @@ language_tabs:
 
 toc_footers:
     - <a href='https://portal.tidetech.org'>Create a subscription with Tidetech</a>
+    - <a href='https://docs.tidetech.org'>Back to Documentation Home</a>
 
 includes:
     - introduction
