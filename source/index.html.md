@@ -8,6 +8,7 @@ language_tabs:
     - javascript
     - csharp
     - go
+    - r
 
 toc_footers:
     - <a href='https://portal.tidetech.org'>Create a subscription with Tidetech</a>

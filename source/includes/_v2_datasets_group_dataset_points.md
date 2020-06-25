@@ -20,17 +20,6 @@ curl --location --request POST https://api.tidetech.org/v2/datasets/waves/global
 --data-raw '{
     "points": [
         {
-            "id": "point",
-            "point": {
-                "coordinates": [
-                    -1.44457,
-                    50.0616
-                ],
-                "type": "Point"
-            },
-            "timestep": "2020-05-29T18:00:00Z"
-        },
-        {
             "id": "multipoint",
             "point": {
                 "coordinates": [
@@ -56,17 +45,6 @@ const apisecret = "my_api_secret"
 const url = "https://api.tidetech.org/v2/datasets/waves/global_waves/points/"
 const payload = {
     "points": [
-        {
-            "id": "point",
-            "point": {
-                "coordinates": [
-                    -1.44457,
-                    50.0616
-                ],
-                "type": "Point"
-            },
-            "timestep": "2020-05-29T18:00:00Z"
-        },
         {
             "id": "multipoint",
             "point": {
@@ -106,17 +84,6 @@ url = "https://api.tidetech.org/v2/datasets/waves/global_waves/points/"
 payload = {
     "points": [
         {
-            "id": "point",
-            "point": {
-                "coordinates": [
-                    -1.44457,
-                    50.0616
-                ],
-                "type": "Point"
-            },
-            "timestep": "2020-05-29T18:00:00Z"
-        },
-        {
             "id": "multipoint",
             "point": {
                 "coordinates": [
@@ -145,16 +112,6 @@ string apisecret = "my_api_secret";
 string url = "https://api.tidetech.org/v2/datasets/waves/global_waves/points/";
 var payload = "{" +
     "\"points\": [" +
-        "{" +
-            "\"id\": \"point\"," + 
-            "\"point\": {" +
-                "\"coordinates\": [" +
-                    "-1.44457, 50.0616" +
-                "]," +
-                "\"type\": \"Point\"" +
-            "}," +
-            "\"timestep\": \"2020-05-29T18:00:00Z\"" +
-        "}," +
         "{" +
             "\"id\": \"multipoint\"," +
             "\"point\": {" +
@@ -209,17 +166,6 @@ func main() {
     {
         "points": [
             {
-                "id": "point",
-                "point": {
-                    "coordinates": [
-                        -1.44457,
-                        50.0616
-                    ],
-                    "type": "Point"
-                },
-                "timestep": "2020-05-29T18:00:00Z"
-            },
-            {
                 "id": "multipoint",
                 "point": {
                     "coordinates": [
@@ -252,6 +198,45 @@ func main() {
 
     fmt.Println(string(body))
 }
+```
+
+```r
+library('httr')
+library('jsonlite')
+
+apikey <- "my_api_key"
+apisecret <- "my_api_secret"
+url <- "https://api.tidetech.org/v2/datasets/waves/global_waves/points/"
+
+payload <- '{
+    "points": [
+        {
+            "id": "multipoint",
+            "point": {
+                "coordinates": [
+                    [-8.695, 50.079],
+                    [-1.472, 50.1438]
+                ],
+                "type": "MultiPoint"
+            },
+            "timestep": "2020-05-27T06:00:00Z",
+            "parameters": [
+                "HTSGW",
+                "DIRPW"
+            ]
+        }
+    ]
+}'
+
+req <- POST(
+    url,
+    authenticate(apikey, apisecret, type="basic"),
+    encode="json",
+    body=fromJSON(payload))
+
+output <- prettify(content(req, "text"))
+
+print(output)
 ```
 
 > Make sure to replace `my_api_key` and `my_api_secret` with your API Key and Secret.
@@ -293,33 +278,6 @@ Each request sent is only allowed to contain up to a maximum of 500 points. If y
         "features": [
             {
                 "type": "Feature",
-                "id": "point",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        -1.44457,
-                        50.0616
-                    ]
-                },
-                "properties": {
-                    "dataset": "global_waves",
-                    "timestep": "2020-05-29T18:00:00+00:00",
-                    "values": {
-                        "HTSGW": 0.949999988079071,
-                        "PERPW": 4.659999847412109,
-                        "DIRPW": 82.5,
-                        "WVHGT": 0.8799999952316284,
-                        "WVPER": 3.609999895095825,
-                        "WVDIR": 74.01000213623047,
-                        "SWELL": 0.1899999976158142,
-                        "SWPER": 4.360000133514404,
-                        "SWDIR": 31.600004196166992,
-                        "LENPW": 33.87022018432617
-                    }
-                }
-            },
-            {
-                "type": "Feature",
                 "id": "multipoint",
                 "geometry": {
                     "type": "MultiPoint",
@@ -339,11 +297,11 @@ Each request sent is only allowed to contain up to a maximum of 500 points. If y
                     "timestep": "2020-05-27T06:00:00+00:00",
                     "values": [
                         {
-                            "HTSGW": 1.96999990940094,
+                            "HTSGW": 2.0299999713897705,
                             "DIRPW": 277.5
                         },
                         {
-                            "HTSGW": 0.7299999594688416,
+                            "HTSGW": 0.7599999904632568,
                             "DIRPW": 262.5
                         }
                     ]

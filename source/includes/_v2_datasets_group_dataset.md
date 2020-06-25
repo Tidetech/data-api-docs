@@ -98,6 +98,20 @@ func main() {
 }
 ```
 
+```r
+library('httr')
+library('jsonlite')
+
+apikey <- "my_api_key"
+apisecret <- "my_api_secret"
+url <- "https://api.tidetech.org/v2/datasets/currents/baltic_sea_currents/"
+
+req <- GET(url, authenticate(apikey, apisecret, type="basic"))
+output <- prettify(content(req, "text"))
+
+print(output)
+```
+
 > Make sure to replace `my_api_key` and `my_api_secret` with your API Key and Secret.
 
 

@@ -205,6 +205,42 @@ func main() {
 }
 ```
 
+```r
+library('httr')
+library('jsonlite')
+
+apikey <- "my_api_key"
+apisecret <- "my_api_secret"
+url <- "https://api.tidetech.org/v2/datasets/meteorology/global_meteorology/area/"
+path <- "global_met.nc"
+
+payload <- '{
+    "start_timestep": "2020-05-27T00:00:00Z",
+    "end_timestep": "2020-05-27T12:00:00Z",
+    "parameters": ["UGRD", "VGRD"],
+    "polygon": {
+        "type": "Polygon",
+        "coordinates": [[
+            [-1.2732, 50.8536],
+            [-1.7080, 50.6650],
+            [-1.2732, 50.5020],
+            [-0.8165, 50.6691],
+            [-1.2732, 50.8536]
+        ]]
+    }
+}'
+
+req <- POST(
+    url,
+    authenticate(apikey, apisecret, type="basic"),
+    encode="json",
+    body=fromJSON(payload),
+    write_disk(path, overwrite=TRUE),
+    progress())
+
+stop_for_status(req)
+```
+
 > Make sure to replace `my_api_key` and `my_api_secret` with your API Key and Secret.
 
 

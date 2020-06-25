@@ -105,6 +105,20 @@ func main() {
 }
 ```
 
+```r
+library('httr')
+library('jsonlite')
+
+apikey <- "my_api_key"
+apisecret <- "my_api_secret"
+url <- "https://api.tidetech.org/v2/auth/"
+
+req <- GET(url, authenticate(apikey, apisecret, type="basic"))
+output <- prettify(content(req, "text"))
+
+print(output)
+```
+
 > Make sure to replace `my_api_key` and `my_api_secret` with your API Key and Secret.
 
 > The above command returns json structured like this:
@@ -190,6 +204,18 @@ func main() {
 
   fmt.Println(string(body))
 }
+```
+
+```r
+library('httr')
+library('jsonlite')
+
+url <- "https://api.tidetech.org/v2/auth/"
+
+req <- GET(url)
+output <- prettify(content(req, as="text"))
+
+print(output)
 ```
 
 > The above command returns json structured like this:

@@ -104,6 +104,34 @@ func main() {
 }
 ```
 
+```r
+library('httr')
+library('jsonlite')
+
+apikey <- "my_api_key"
+apisecret <- "my_api_secret"
+url <- "https://api.tidetech.org/v2/datasets/currents/solent_currents/forecast/"
+path <- "solent_forecast.nc"
+
+req <- GET(
+    url,
+    authenticate(apikey, apisecret, type="basic"),
+    config(http_content_decoding=0, followlocation=0),
+    write_disk(path, overwrite=TRUE))
+if (status_code(req) == 302) {
+    req2 <- GET(
+        req$headers$location,
+        add_headers(prefer = "respond-async"),
+        config(http_content_decoding=0, followlocation=0),
+        write_disk(path, overwrite=TRUE),
+        progress())
+
+    stop_for_status(req2)
+} else {
+    stop_for_status(req)
+}
+```
+
 > Make sure to replace `my_api_key` and `my_api_secret` with your API Key and Secret.
 
 
