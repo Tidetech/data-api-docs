@@ -17,6 +17,7 @@ Options:
                            commit's message.
       --source-only        Only build but not push
       --push-only          Only push but not build
+      --sync-prod            Sync build to S3 production site and invalidate CloudFront cache
 "
 
 
@@ -54,6 +55,9 @@ parse_args() {
       shift
     elif [[ $1 = "--push-only" ]]; then
       push_only=true
+      shift
+    elif [[ $1 = "--sync-prod" ]]; then
+      sync_prod=true
       shift
     else
       break
@@ -214,9 +218,18 @@ sanitize() {
   "$@" 2> >(filter 1>&2) | filter
 }
 
+sync_to_s3() {
+  aws s3 sync ./build/ s3://docs.tidetech.org/data-api --delete --exclude ".git/*"
+  aws cloudfront create-invalidation --distribution-id=E3UMYDANSKFA0F --paths '/*'
+}
+
 parse_args "$@"
 
-if [[ ${source_only} ]]; then
+if [[ ${sync_prod} ]]; then
+  run_build
+  main "$@"
+  sync_to_s3
+elif [[ ${source_only} ]]; then
   run_build
 elif [[ ${push_only} ]]; then
   main "$@"
