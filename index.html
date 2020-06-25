@@ -212,7 +212,7 @@
       <script src="javascripts/all-c808cc27.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;,&quot;csharp&quot;,&quot;go&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;,&quot;csharp&quot;,&quot;go&quot;,&quot;r&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -227,6 +227,7 @@
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="csharp">csharp</a>
               <a href="#" data-language-name="go">go</a>
+              <a href="#" data-language-name="r">r</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -429,7 +430,18 @@ As the files served from our `forecast` endpoint are stored on Amazon S3, it is 
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/auth/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">))</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 
@@ -497,7 +509,16 @@ As the files served from our `forecast` endpoint are stored on Amazon S3, it is 
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/auth/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">as</span><span class="o">=</span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns json structured like this:</p>
 </blockquote>
@@ -578,7 +599,18 @@ As the files served from our `forecast` endpoint are stored on Amazon S3, it is 
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/auth/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">))</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -714,7 +746,18 @@ As the files served from our `forecast` endpoint are stored on Amazon S3, it is 
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/auth/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">))</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -826,7 +869,18 @@ to you and their URLS.</p>
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/datasets/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">))</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -953,7 +1007,18 @@ endpoints that extract data.</p>
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/datasets/currents/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">))</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -1099,7 +1164,18 @@ See the <a href='#metadata'>Metadata</a> section for more details.
 
   <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/datasets/currents/baltic_sea_currents/"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">))</span><span class="w">
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -1215,17 +1291,6 @@ Content-Type: application/json headers set.</p>
 <span class="nt">--data-raw</span> <span class="s1">'{
     "points": [
         {
-            "id": "point",
-            "point": {
-                "coordinates": [
-                    -1.44457,
-                    50.0616
-                ],
-                "type": "Point"
-            },
-            "timestep": "2020-05-29T18:00:00Z"
-        },
-        {
             "id": "multipoint",
             "point": {
                 "coordinates": [
@@ -1248,17 +1313,6 @@ Content-Type: application/json headers set.</p>
 <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.tidetech.org/v2/datasets/waves/global_waves/points/</span><span class="dl">"</span>
 <span class="kd">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="dl">"</span><span class="s2">points</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">point</span><span class="dl">"</span><span class="p">,</span>
-            <span class="dl">"</span><span class="s2">point</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="dl">"</span><span class="s2">coordinates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="o">-</span><span class="mf">1.44457</span><span class="p">,</span>
-                    <span class="mf">50.0616</span>
-                <span class="p">],</span>
-                <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Point</span><span class="dl">"</span>
-            <span class="p">},</span>
-            <span class="dl">"</span><span class="s2">timestep</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2020-05-29T18:00:00Z</span><span class="dl">"</span>
-        <span class="p">},</span>
         <span class="p">{</span>
             <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">multipoint</span><span class="dl">"</span><span class="p">,</span>
             <span class="dl">"</span><span class="s2">point</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
@@ -1295,17 +1349,6 @@ Content-Type: application/json headers set.</p>
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"points"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s">"id"</span><span class="p">:</span> <span class="s">"point"</span><span class="p">,</span>
-            <span class="s">"point"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s">"coordinates"</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="o">-</span><span class="mf">1.44457</span><span class="p">,</span>
-                    <span class="mf">50.0616</span>
-                <span class="p">],</span>
-                <span class="s">"type"</span><span class="p">:</span> <span class="s">"Point"</span>
-            <span class="p">},</span>
-            <span class="s">"timestep"</span><span class="p">:</span> <span class="s">"2020-05-29T18:00:00Z"</span>
-        <span class="p">},</span>
-        <span class="p">{</span>
             <span class="s">"id"</span><span class="p">:</span> <span class="s">"multipoint"</span><span class="p">,</span>
             <span class="s">"point"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s">"coordinates"</span><span class="p">:</span> <span class="p">[</span>
@@ -1331,16 +1374,6 @@ Content-Type: application/json headers set.</p>
 <span class="kt">string</span> <span class="n">url</span> <span class="p">=</span> <span class="s">"https://api.tidetech.org/v2/datasets/waves/global_waves/points/"</span><span class="p">;</span>
 <span class="kt">var</span> <span class="n">payload</span> <span class="p">=</span> <span class="s">"{"</span> <span class="p">+</span>
     <span class="s">"\"points\": ["</span> <span class="p">+</span>
-        <span class="s">"{"</span> <span class="p">+</span>
-            <span class="s">"\"id\": \"point\","</span> <span class="p">+</span> 
-            <span class="s">"\"point\": {"</span> <span class="p">+</span>
-                <span class="s">"\"coordinates\": ["</span> <span class="p">+</span>
-                    <span class="s">"-1.44457, 50.0616"</span> <span class="p">+</span>
-                <span class="s">"],"</span> <span class="p">+</span>
-                <span class="s">"\"type\": \"Point\""</span> <span class="p">+</span>
-            <span class="s">"},"</span> <span class="p">+</span>
-            <span class="s">"\"timestep\": \"2020-05-29T18:00:00Z\""</span> <span class="p">+</span>
-        <span class="s">"},"</span> <span class="p">+</span>
         <span class="s">"{"</span> <span class="p">+</span>
             <span class="s">"\"id\": \"multipoint\","</span> <span class="p">+</span>
             <span class="s">"\"point\": {"</span> <span class="p">+</span>
@@ -1392,17 +1425,6 @@ Content-Type: application/json headers set.</p>
     {
         "points": [
             {
-                "id": "point",
-                "point": {
-                    "coordinates": [
-                        -1.44457,
-                        50.0616
-                    ],
-                    "type": "Point"
-                },
-                "timestep": "2020-05-29T18:00:00Z"
-            },
-            {
                 "id": "multipoint",
                 "point": {
                     "coordinates": [
@@ -1435,7 +1457,43 @@ Content-Type: application/json headers set.</p>
 
     <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/datasets/waves/global_waves/points/"</span><span class="w">
+
+</span><span class="n">payload</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'{
+    "points": [
+        {
+            "id": "multipoint",
+            "point": {
+                "coordinates": [
+                    [-8.695, 50.079],
+                    [-1.472, 50.1438]
+                ],
+                "type": "MultiPoint"
+            },
+            "timestep": "2020-05-27T06:00:00Z",
+            "parameters": [
+                "HTSGW",
+                "DIRPW"
+            ]
+        }
+    ]
+}'</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">POST</span><span class="p">(</span><span class="w">
+    </span><span class="n">url</span><span class="p">,</span><span class="w">
+    </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">),</span><span class="w">
+    </span><span class="n">encode</span><span class="o">=</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
+    </span><span class="n">body</span><span class="o">=</span><span class="n">fromJSON</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span><span class="w">
+
+</span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prettify</span><span class="p">(</span><span class="n">content</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="s2">"text"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -1528,33 +1586,6 @@ Each request sent is only allowed to contain up to a maximum of 500 points. If y
         </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feature"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"point"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Point"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="mf">-1.44457</span><span class="p">,</span><span class="w">
-                        </span><span class="mf">50.0616</span><span class="w">
-                    </span><span class="p">]</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global_waves"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-29T18:00:00+00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"HTSGW"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.949999988079071</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"PERPW"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.659999847412109</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"DIRPW"</span><span class="p">:</span><span class="w"> </span><span class="mf">82.5</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"WVHGT"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8799999952316284</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"WVPER"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.609999895095825</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"WVDIR"</span><span class="p">:</span><span class="w"> </span><span class="mf">74.01000213623047</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"SWELL"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1899999976158142</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"SWPER"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.360000133514404</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"SWDIR"</span><span class="p">:</span><span class="w"> </span><span class="mf">31.600004196166992</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"LENPW"</span><span class="p">:</span><span class="w"> </span><span class="mf">33.87022018432617</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feature"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multipoint"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MultiPoint"</span><span class="p">,</span><span class="w">
@@ -1574,11 +1605,11 @@ Each request sent is only allowed to contain up to a maximum of 500 points. If y
                     </span><span class="nl">"timestep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-27T06:00:00+00:00"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                         </span><span class="p">{</span><span class="w">
-                            </span><span class="nl">"HTSGW"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.96999990940094</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"HTSGW"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0299999713897705</span><span class="p">,</span><span class="w">
                             </span><span class="nl">"DIRPW"</span><span class="p">:</span><span class="w"> </span><span class="mf">277.5</span><span class="w">
                         </span><span class="p">},</span><span class="w">
                         </span><span class="p">{</span><span class="w">
-                            </span><span class="nl">"HTSGW"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7299999594688416</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"HTSGW"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7599999904632568</span><span class="p">,</span><span class="w">
                             </span><span class="nl">"DIRPW"</span><span class="p">:</span><span class="w"> </span><span class="mf">262.5</span><span class="w">
                         </span><span class="p">}</span><span class="w">
                     </span><span class="p">]</span><span class="w">
@@ -1776,7 +1807,40 @@ The <b><em>global_ocean_surface_temperature</em></b> dataset grid size is too la
 
     <span class="n">ioutil</span><span class="o">.</span><span class="n">WriteFile</span><span class="p">(</span><span class="s">"global_met.nc"</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="m">0777</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/datasets/meteorology/global_meteorology/area/"</span><span class="w">
+</span><span class="n">path</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"global_met.nc"</span><span class="w">
+
+</span><span class="n">payload</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s1">'{
+    "start_timestep": "2020-05-27T00:00:00Z",
+    "end_timestep": "2020-05-27T12:00:00Z",
+    "parameters": ["UGRD", "VGRD"],
+    "polygon": {
+        "type": "Polygon",
+        "coordinates": [[
+            [-1.2732, 50.8536],
+            [-1.7080, 50.6650],
+            [-1.2732, 50.5020],
+            [-0.8165, 50.6691],
+            [-1.2732, 50.8536]
+        ]]
+    }
+}'</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">POST</span><span class="p">(</span><span class="w">
+    </span><span class="n">url</span><span class="p">,</span><span class="w">
+    </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">),</span><span class="w">
+    </span><span class="n">encode</span><span class="o">=</span><span class="s2">"json"</span><span class="p">,</span><span class="w">
+    </span><span class="n">body</span><span class="o">=</span><span class="n">fromJSON</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span><span class="w">
+    </span><span class="n">write_disk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">progress</span><span class="p">())</span><span class="w">
+
+</span><span class="n">stop_for_status</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -1969,7 +2033,32 @@ The <b><em>global_ocean_surface_temperature</em></b> dataset grid size is too la
 
     <span class="n">ioutil</span><span class="o">.</span><span class="n">WriteFile</span><span class="p">(</span><span class="s">"solent_forecast.nc"</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="m">0777</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="highlight"><pre class="highlight r tab-r"><code><span class="n">library</span><span class="p">(</span><span class="s1">'httr'</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="s1">'jsonlite'</span><span class="p">)</span><span class="w">
+
+</span><span class="n">apikey</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_key"</span><span class="w">
+</span><span class="n">apisecret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"my_api_secret"</span><span class="w">
+</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://api.tidetech.org/v2/datasets/currents/solent_currents/forecast/"</span><span class="w">
+</span><span class="n">path</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"solent_forecast.nc"</span><span class="w">
+
+</span><span class="n">req</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="w">
+    </span><span class="n">url</span><span class="p">,</span><span class="w">
+    </span><span class="n">authenticate</span><span class="p">(</span><span class="n">apikey</span><span class="p">,</span><span class="w"> </span><span class="n">apisecret</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"basic"</span><span class="p">),</span><span class="w">
+    </span><span class="n">config</span><span class="p">(</span><span class="n">http_content_decoding</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">followlocation</span><span class="o">=</span><span class="m">0</span><span class="p">),</span><span class="w">
+    </span><span class="n">write_disk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status_code</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">302</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">req2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GET</span><span class="p">(</span><span class="w">
+        </span><span class="n">req</span><span class="o">$</span><span class="n">headers</span><span class="o">$</span><span class="n">location</span><span class="p">,</span><span class="w">
+        </span><span class="n">add_headers</span><span class="p">(</span><span class="n">prefer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"respond-async"</span><span class="p">),</span><span class="w">
+        </span><span class="n">config</span><span class="p">(</span><span class="n">http_content_decoding</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">followlocation</span><span class="o">=</span><span class="m">0</span><span class="p">),</span><span class="w">
+        </span><span class="n">write_disk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">overwrite</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+        </span><span class="n">progress</span><span class="p">())</span><span class="w">
+
+    </span><span class="n">stop_for_status</span><span class="p">(</span><span class="n">req2</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">stop_for_status</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>my_api_key</code> and <code>my_api_secret</code> with your API Key and Secret.</p>
 </blockquote>
@@ -2376,6 +2465,7 @@ The <em><b>/v2/datasets/{group}/{dataset}/forecast/</b></em> endpoint only suppo
                 <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="csharp">csharp</a>
                 <a href="#" data-language-name="go">go</a>
+                <a href="#" data-language-name="r">r</a>
           </div>
       </div>
     </div>
