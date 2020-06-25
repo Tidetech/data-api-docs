@@ -106,7 +106,6 @@ func main() {
 
 ```r
 library('httr')
-library('jsonlite')
 
 apikey <- "my_api_key"
 apisecret <- "my_api_secret"
