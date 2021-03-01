@@ -45,15 +45,16 @@ axios.get("https://api.tidetech.org/v2/datasets/currents/solent_currents/forecas
 ```
 
 ``` python
-from requests import request
+import requests
 
+apikey = "my_api_key"
+apisecret = "my_api_secret"
 url = "https://api.tidetech.org/v2/datasets/currents/solent_currents/forecast/"
 
-response = request("GET", url, auth=("my_api_key", "my_api_secret"), stream=True)
-
-with open("solent_forecast.nc", "wb") as f:
-    for chunk in response.iter_content(chunk_size=1024*1024):
-        f.write(chunk)
+with requests.get(url, auth=(apikey, apisecret), stream=True) as r:
+    with open("solent_forecast.nc", "wb") as f:
+        for chunk in r.iter_content(chunk_size=1024*1024):
+            f.write(chunk)
 ```
 
 ``` csharp

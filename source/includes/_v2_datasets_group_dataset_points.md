@@ -76,7 +76,7 @@ axios.post(url, payload, {
 ```
 
 ``` python
-from requests import request
+import requests
 
 apikey = "my_api_key"
 apisecret = "my_api_secret"
@@ -101,9 +101,9 @@ payload = {
     ]
 }
 
-response = request("POST", url, json=payload, auth=(apikey, apisecret))
+r = requests.post(url, json=payload, auth=(apikey, apisecret))
 
-print(response.json())
+print(r.json())
 ```
 
 ``` csharp

@@ -81,7 +81,7 @@ axios.post(url, payload, {
 ```
 
 ``` python
-from requests import request
+import requests
 
 apikey = "my_api_key"
 apisecret = "my_api_secret"
@@ -107,11 +107,10 @@ payload = {
     }
 }
 
-response = request("POST", url, json=payload, auth=(apikey, apisecret), stream=True)
-
-with open("global_met.nc", "wb") as f:
-    for chunk in response.iter_content(chunk_size=1024*1024):
-        f.write(chunk)
+with requests.post(url, json=payload, auth=(apikey, apisecret), stream=True) as r:
+    with open("global_met.nc", "wb") as f:
+        for chunk in r.iter_content(chunk_size=1024*1024):
+            f.write(chunk)
 ```
 
 ``` csharp
