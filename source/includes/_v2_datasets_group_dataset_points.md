@@ -101,9 +101,9 @@ payload = {
     ]
 }
 
-r = requests.post(url, json=payload, auth=(apikey, apisecret))
-
-print(r.json())
+with requests.post(url, json=payload, auth=(apikey, apisecret)) as r:
+    r.raise_for_status()
+    print(r.json())
 ```
 
 ``` csharp

@@ -45,15 +45,15 @@ axios.get(url, {
 ```
 
 ```python
-from requests import request
+import requests
 
 apikey = "my_api_key"
 apisecret = "my_api_secret"
 url = "https://api.tidetech.org/v2/auth/"
 
-response = request("GET", url, auth=(apikey, apisecret))
-
-print(response.json())
+with requests.get(url, auth=(apikey, apisecret)) as r:
+  r.raise_for_status()
+  print(r.json())
 ```
 
 ```csharp
@@ -143,13 +143,13 @@ curl --location --request GET https://api.tidetech.org/v2/auth/
 ```
 
 ```python
-from requests import request
+import requests
 
 url = "https://api.tidetech.org/v2/auth/"
 
-response = request("GET", url)
-
-print(response.json())
+with requests.get(url) as r:
+  r.raise_for_status()
+  print(r.json())
 ```
 
 ```javascript

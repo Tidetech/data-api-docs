@@ -108,6 +108,7 @@ payload = {
 }
 
 with requests.post(url, json=payload, auth=(apikey, apisecret), stream=True) as r:
+    r.raise_for_status()
     with open("global_met.nc", "wb") as f:
         for chunk in r.iter_content(chunk_size=1024*1024):
             f.write(chunk)

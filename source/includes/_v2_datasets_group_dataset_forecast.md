@@ -52,6 +52,7 @@ apisecret = "my_api_secret"
 url = "https://api.tidetech.org/v2/datasets/currents/solent_currents/forecast/"
 
 with requests.get(url, auth=(apikey, apisecret), stream=True) as r:
+    r.raise_for_status()
     with open("solent_forecast.nc", "wb") as f:
         for chunk in r.iter_content(chunk_size=1024*1024):
             f.write(chunk)

@@ -38,15 +38,15 @@ axios.get(url, {
 ```
 
 ```python
-from requests import request
+import requests
 
 apikey = "my_api_key"
 apisecret = "my_api_secret"
 url = "https://api.tidetech.org/v2/datasets/currents/baltic_sea_currents/"
 
-response = request("GET", url, auth=(apikey, apisecret))
-
-print(response.json())
+with requests.get(url, auth=(apikey, apisecret)) as r:
+  r.raise_for_status()
+  print(r.json())
 ```
 
 ```csharp
