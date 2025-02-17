@@ -44,7 +44,7 @@
 
 | grib_code | description | unit |
 |-----------|-------------|------|
-| SALTY | Salinity | kg per kg |
+| SALTY | Salinity | g per kg |
 | WTMP | Water temperature | kelvin |
 | CHLA | Mass concentration of total chlorophyll in sea water | mg per m³
 
