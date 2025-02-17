@@ -2,13 +2,11 @@
 
 title: Metocean Data API 
 
-language_tabs: 
-    - shell 
-    - python
-    - javascript
-    - csharp
-    - go
-    - r
+language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
+  - shell
+  - ruby
+  - python
+  - javascript
 
 toc_footers:
     - <a href='https://portal.tidetech.org'>Create a subscription with Tidetech</a>
