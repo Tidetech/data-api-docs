@@ -37,14 +37,14 @@ parse_args() {
   if [[ $1 = "-h" || $1 = "--help" ]]; then
     echo "$help_message"
     exit 0
-  elif [[ $1 = "--build" ]]; then
-    run_build
   elif [[ $1 = "--dev" ]]; then
     run_dev
+  elif [[ $1 = "--build" ]]; then
+    run_build
   elif [[ $1 = "--deploy" ]]; then
     run_deploy
   else
-    break
+    >&2 echo "Specify one of --dev, --build or --deploy"
   fi
 
 }
