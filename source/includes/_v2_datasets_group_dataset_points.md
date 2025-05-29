@@ -20,15 +20,12 @@ curl --location --request POST https://api.tidetech.org/v2/datasets/waves/global
 --data-raw '{
     "points": [
         {
-            "id": "multipoint",
+            "id": "point01",
             "point": {
-                "coordinates": [
-                	[-8.695, 50.079],
-                	[-1.472, 50.1438]
-                ],
-                "type": "MultiPoint"
+                "coordinates": [-8.695, 50.079],
+                "type": "Point"
             },
-            "timestep": "2020-05-27T06:00:00Z",
+            "timestep": "2025-05-27T06:00:00Z",
             "parameters": [
             	"HTSGW",
             	"DIRPW"
@@ -46,15 +43,12 @@ const url = "https://api.tidetech.org/v2/datasets/waves/global_waves/points/"
 const payload = {
     "points": [
         {
-            "id": "multipoint",
+            "id": "point01",
             "point": {
-                "coordinates": [
-                    [-8.695, 50.079],
-                    [-1.472, 50.1438]
-                ],
-                "type": "MultiPoint"
+                "coordinates": [-8.695, 50.079],
+                "type": "Point"
             },
-            "timestep": "2020-05-27T06:00:00Z",
+            "timestep": "2025-05-27T06:00:00Z",
             "parameters": [
                 "HTSGW",
                 "DIRPW"
@@ -84,15 +78,12 @@ url = "https://api.tidetech.org/v2/datasets/waves/global_waves/points/"
 payload = {
     "points": [
         {
-            "id": "multipoint",
+            "id": "point01",
             "point": {
-                "coordinates": [
-                    [-8.695, 50.079],
-                    [-1.472, 50.1438]
-                ],
-                "type": "MultiPoint"
+                "coordinates": [-8.695, 50.079],
+                "type": "Point"
             },
-            "timestep": "2020-05-27T06:00:00Z",
+            "timestep": "2025-05-27T06:00:00Z",
             "parameters": [
                 "HTSGW",
                 "DIRPW"
@@ -113,15 +104,12 @@ string url = "https://api.tidetech.org/v2/datasets/waves/global_waves/points/";
 var payload = "{" +
     "\"points\": [" +
         "{" +
-            "\"id\": \"multipoint\"," +
+            "\"id\": \"point01\"," +
             "\"point\": {" +
-                "\"coordinates\": [" +
-                    "[-8.695, 50.079]," +
-                    "[-1.472,50.1438]" +
-                "]," +
-                "\"type\": \"MultiPoint\"" +
+                "\"coordinates\": [-8.695, 50.079]," +
+                "\"type\": \"Point\"" +
             "}," +
-            "\"timestep\": \"2020-05-27T06:00:00Z\"," +
+            "\"timestep\": \"2025-05-27T06:00:00Z\"," +
             "\"parameters\": [" +
                 "\"HTSGW\"," +
                 "\"DIRPW\"" +
@@ -166,15 +154,12 @@ func main() {
     {
         "points": [
             {
-                "id": "multipoint",
+                "id": "point01",
                 "point": {
-                    "coordinates": [
-                        [-8.695, 50.079],
-                        [-1.472, 50.1438]
-                    ],
-                    "type": "MultiPoint"
+                    "coordinates": [-8.695, 50.079],
+                    "type": "Point"
                 },
-                "timestep": "2020-05-27T06:00:00Z",
+                "timestep": "2025-05-27T06:00:00Z",
                 "parameters": [
                     "HTSGW",
                     "DIRPW"
@@ -211,15 +196,12 @@ url <- "https://api.tidetech.org/v2/datasets/waves/global_waves/points/"
 payload <- '{
     "points": [
         {
-            "id": "multipoint",
+            "id": "point01",
             "point": {
-                "coordinates": [
-                    [-8.695, 50.079],
-                    [-1.472, 50.1438]
-                ],
-                "type": "MultiPoint"
+                "coordinates": [-8.695, 50.079],
+                "type": "Point"
             },
-            "timestep": "2020-05-27T06:00:00Z",
+            "timestep": "2025-05-27T06:00:00Z",
             "parameters": [
                 "HTSGW",
                 "DIRPW"

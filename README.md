@@ -1,3 +1,38 @@
+## Tidetech Data API V2 Documentation Site
+
+
+#### Requirements
+* Docker CLI
+* AWS CLI
+* AWS Credentials allowing sync to the `docs.tidetech.org` bucket and invalidating
+  the cache on Cloudfront distribution `E3UMYDANSKFA0F`
+
+### Development
+
+Run the build locally on port 4567:
+```bash
+./tt_slate.sh --dev
+```
+
+### Build site
+
+Build the site files for deployment:
+```bash
+./tt_slate.sh --build
+```
+
+### Deploy to production
+
+Sync the `./build` folder to the `/data-api/` directory in the Tidetech docs bucket,
+and invalidate the cache in the Cloudfront distribution:
+```bash
+./tt_slate.sh --deploy
+```
+
+
+## Built with Slate:
+
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/slatedocs/img/main/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
